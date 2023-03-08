@@ -5,14 +5,12 @@ function Enter() {
   // Enter classes component
   var count = 1;
   // add another input blank
+  crn = []; // Reset the CRNs
   return (
     // Return the enter CRNs component
     <div class="container text-center mt-5">
       <h1>Enter your Class Registration Numbers (CRNs):</h1>
       <br></br>
-      <p>
-        Please add the number of CRNs you wish to enter before entering the CRNs
-      </p>
       <form>
         <input
           required
@@ -27,12 +25,19 @@ function Enter() {
           class="btn btn-primary"
           onClick={() => {
             count++;
+            const inputs = document.querySelectorAll('input[type="number"]');
+            const values = [];
+            inputs.forEach((input) => values.push(input.value));
             document.getElementById("crn").innerHTML +=
               "<input type='number' placeholder='CRN #" +
               count +
               "' id='crn" +
               count +
-              "'}}/><br></br>";
+              "'}/><br></br>";
+            const newInputs = document.querySelectorAll('input[type="number"]');
+            newInputs.forEach((input, index) => {
+              input.value = values[index] || "";
+            });
           }}
         >
           Add more CRNs
@@ -42,7 +47,7 @@ function Enter() {
           className="connect"
           to="/confirm"
           onClick={(el) => {
-            if (crn.length == 0) {
+            if (crn.length === 0) {
               el.preventDefault();
               alert("Please enter at least one CRN");
             }

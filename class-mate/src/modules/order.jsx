@@ -10,8 +10,8 @@ function Order() {
       <h2>Congratulations!</h2>
       <p>You have been successfully added to all class groups!</p>
       <p>
-        You can check out the groups you have been added to in the /"Your
-        classes/" section
+        You can check out the groups you have been added to in the{" "}
+        <b>Your classes</b> section
       </p>
       <div>
         <NavLink className="navbar-brand" to="/">
