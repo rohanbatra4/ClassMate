@@ -127,7 +127,7 @@ function Home() {
               <fieldset>
                 <label>
                   <p>Recent selection:</p>
-                  <NavLink className="connect" to="/info">
+                  <NavLink className="connect" to="/Enter">
                     <img src={gt} alt="gt" width="100px" height="100px" />
                   </NavLink>
                 </label>
@@ -135,7 +135,7 @@ function Home() {
               <br></br>
               <NavLink
                 className="connect"
-                to="/info"
+                to="/Enter"
                 onClick={(e) => {
                   if (
                     values.country == null ||
@@ -147,7 +147,9 @@ function Home() {
                   }
                 }}
               >
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">
+                  Submit
+                </button>
               </NavLink>
             </form>
           </div>
