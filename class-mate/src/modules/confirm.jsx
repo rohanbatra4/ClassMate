@@ -27,7 +27,7 @@ function Confirm() {
       <p>Deselect the groups you do not wish to join</p>
       <form>
         {crnInitial.map((crnNumber) => (
-          <div key={crnNumber} className="form-check">
+          <div key={crnNumber} className="form-group">
             <input
               className="form-check-input"
               type="checkbox"
@@ -63,6 +63,8 @@ function Confirm() {
             Join
           </button>
         </NavLink>
+        <br />
+        <br />
       </form>
     </div>
   );
