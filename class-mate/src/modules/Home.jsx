@@ -6,7 +6,7 @@ import Select from "react-select";
 import { Country, State } from "country-state-city";
 import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
-
+export var email = "";
 function Home() {
   // Home component
 
@@ -62,6 +62,21 @@ function Home() {
 
             <h1 class="font-weight-light">Select your college</h1>
             <form onSubmit={handleSubmit}>
+              <fieldset>
+                <label>
+                  <p>Enter your email id</p>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example123@gmail.com"
+                    onChange={(e) => {
+                      email = e.target.value;
+                    }}
+                  />
+                </label>
+                <br />
+              </fieldset>
               <fieldset>
                 <label>
                   <p>Choose your country</p>
@@ -141,10 +156,20 @@ function Home() {
                   if (
                     values.country == null ||
                     values.state == null ||
-                    values.college == null
+                    values.college == null ||
+                    email === ""
                   ) {
                     e.preventDefault();
                     alert("Please select all the fields");
+                  } else if (
+                    !email
+                      .toLowerCase()
+                      .match(
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                      )
+                  ) {
+                    e.preventDefault();
+                    alert("Please enter a valid email id");
                   }
                 }}
               >
