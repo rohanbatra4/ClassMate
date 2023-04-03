@@ -8,7 +8,7 @@ function Enter() {
   crn = []; // Reset the CRNs
   return (
     // Return the enter CRNs component
-    <div class="container text-center mt-5">
+    <div className="container text-center mt-5">
       <h1>Enter your Class Registration Numbers (CRNs):</h1>
       <br></br>
       <form>
@@ -22,7 +22,7 @@ function Enter() {
         <div id="crn"></div>
         <button
           type="button"
-          class="btn btn-primary"
+          className="btn btn-primary"
           onClick={() => {
             count++;
             const inputs = document.querySelectorAll('input[type="number"]');
@@ -55,7 +55,7 @@ function Enter() {
         >
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => {
               for (var i = 1; i <= count; i++) {
                 if (

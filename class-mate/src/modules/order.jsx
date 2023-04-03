@@ -6,7 +6,7 @@ function Order() {
 
   return (
     // Return the order component
-    <div class="container text-center mt-5">
+    <div className="container text-center mt-5">
       <h2>Congratulations!</h2>
       <p>You have been successfully added to all class groups!</p>
       <p>

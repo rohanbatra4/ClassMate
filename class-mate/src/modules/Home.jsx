@@ -40,16 +40,16 @@ function Home() {
 
   return (
     <div className="home">
-      <div class="container">
-        <div class="row align-items-center my-5">
-          <div class="col-lg-7">
+      <div className="container">
+        <div className="row align-items-center my-5">
+          <div className="col-lg-7">
             <img
-              class="img-fluid rounded mb-4 mb-lg-0"
+              className="img-fluid rounded mb-4 mb-lg-0"
               src={banner}
               alt="banner"
             />
           </div>
-          <div class="col-lg-5">
+          <div className="col-lg-5">
             <h3>
               <marquee>
                 <img src={extra} width="50px" height="50px" alt="extra" />
@@ -60,7 +60,7 @@ function Home() {
               </marquee>
             </h3>
 
-            <h1 class="font-weight-light">Select your college</h1>
+            <h1 className="font-weight-light">Select your college</h1>
             <form onSubmit={handleSubmit}>
               <fieldset>
                 <label>
@@ -78,7 +78,7 @@ function Home() {
                 <br />
               </fieldset>
               <fieldset>
-                <label>
+                <label className="country" id="country">
                   <p>Choose your country</p>
                   <Select
                     id="country"
@@ -96,7 +96,7 @@ function Home() {
                 </label>
               </fieldset>
               <fieldset>
-                <label>
+                <label id="state">
                   <p>Choose your state</p>
                   <Select
                     id="state"
@@ -119,7 +119,7 @@ function Home() {
                 </label>
               </fieldset>
               <fieldset>
-                <label>
+                <label id="college">
                   <p>Choose your college</p>
 
                   <Select
@@ -173,7 +173,7 @@ function Home() {
                   }
                 }}
               >
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" className="btn btn-primary" id="submit">
                   Submit
                 </button>
               </NavLink>

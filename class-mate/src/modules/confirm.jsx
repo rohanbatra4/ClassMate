@@ -40,7 +40,7 @@ function Confirm() {
               className="form-check-label"
               htmlFor={`checkbox-${crnNumber}`}
             >
-              {crnNumber}
+              {crnNumber}:
             </label>
           </div>
         ))}
