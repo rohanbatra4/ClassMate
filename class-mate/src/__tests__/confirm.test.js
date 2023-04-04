@@ -10,12 +10,14 @@ describe("Confirm", () => {
 
   it("renders the 'Confirm' heading", () => {
     render(<Confirm />, { wrapper: MemoryRouter });
-    expect(screen.getByText("Confirm if you wish to join these groups:")).toBeInTheDocument();
-    });
+    expect(
+      screen.getByText("Confirm if you wish to join these groups:")
+    ).toBeInTheDocument();
+  });
   it("renders the 'Join' button", () => {
     render(<Confirm />, { wrapper: MemoryRouter });
     expect(screen.getByRole("button", { name: "Join" })).toBeInTheDocument();
-    });
+  });
 
   it("displays an alert when the 'Join' button is clicked with no CRNs selected", () => {
     render(<Confirm />, { wrapper: MemoryRouter });

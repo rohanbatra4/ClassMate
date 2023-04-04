@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { crn as crnInitial } from "./Enter.jsx";
+import axios from 'axios';
 
 function Confirm() {
   const [crn, setCrn] = useState(crnInitial);
-  const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
     const crnNumber = event.target.value;
@@ -18,6 +18,18 @@ function Confirm() {
 
   const handleJoinClick = () => {
     alert("Selected CRNs: " + crn.join(", "));
+    console.log("Sending request with body:", { crns: crn });
+    axios.post('http://localhost:4567/name', { crns: crn }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log("Received response:", response.data);
+    })
+    .catch(error => {
+      console.log("Received error:", error.response.data);
+    });
   };
 
   return (
