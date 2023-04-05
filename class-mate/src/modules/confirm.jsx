@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { crn as crnInitial } from "./Enter.jsx";
+import { email } from "./Home.jsx";
 import axios from 'axios';
 
 function Confirm() {
@@ -18,8 +19,8 @@ function Confirm() {
 
   const handleJoinClick = () => {
     alert("Selected CRNs: " + crn.join(", "));
-    console.log("Sending request with body:", { crns: crn });
-    axios.post('http://localhost:4567/name', { crns: crn }, {
+    console.log("Sending request with body:", { emailId: email, crns: crn });
+    axios.post('http://localhost:4567/name', { emailId: email, crns: crn }, {
       headers: {
         'Content-Type': 'application/json'
       }

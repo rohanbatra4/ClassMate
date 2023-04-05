@@ -1,9 +1,19 @@
 require 'sinatra'
 require 'sinatra/cross_origin'
 require 'json'
+require "google/cloud/firestore"
 
+# Initialize Firestore client
+project_id = "classmate-2bc70"
+credential_file = "/Users/rohanbatra/Desktop/CS4365/classmate-2bc70-firebase-adminsdk-v075n-fad07d3573.json"
+db = Google::Cloud::Firestore.new(
+  project_id: project_id,
+  credentials: credential_file
+)
+collection = "UserClasses"
 # set blank dictionary
 dictionary = {}
+pushEmail = ""
 
 configure do
     enable :cross_origin
@@ -25,9 +35,11 @@ configure do
     body = request.body.read
     puts body
     dictionary = JSON.parse(body)
-    puts "Parsed body into dictionary:"
+    pushEmail = dictionary["emailId"]
     for key in dictionary.keys
-        puts dictionary[key]
+        if (key != "emailId")
+          db.collection(collection).doc("emails").set({pushEmail => dictionary[key]}, merge: true)
+        end
     end
   end
 

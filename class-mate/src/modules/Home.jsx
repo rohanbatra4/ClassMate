@@ -143,7 +143,13 @@ function Home() {
               <fieldset>
                 <label>
                   <p>Recent selection:</p>
-                  <NavLink className="connect" to="/Enter">
+                  <NavLink className="connect" to="/Enter" onClick={
+                    (e) => {
+                      if (email === "") {
+                        e.preventDefault();
+                        alert("Please enter your email id");
+                      }
+                  }}>
                     <img src={gt} alt="gt" width="100px" height="100px" />
                   </NavLink>
                 </label>
