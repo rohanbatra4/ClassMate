@@ -13,7 +13,9 @@ db = Google::Cloud::Firestore.new(
 collection = "UserClasses"
 # set blank dictionary
 dictionary = {}
+dictionary1 = {}
 pushEmail = ""
+exist = false
 
 configure do
     enable :cross_origin
@@ -29,9 +31,32 @@ configure do
     200
   end
   
+  post '/verify' do
+    count = 1
+    exist = false
+    check = 0
+    puts "Entered the Verify POST block"
+    body = request.body.read
+    puts body
+    dictionary1 = JSON.parse(body)
+    for value in dictionary1["crns"]
+      while count < 8 do
+        if (db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value] == nil)
+          check += 0
+        else
+          check += 1
+          puts db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value]
+          break
+        end
+        count += 1
+      end
+    end
+    exist = (check == dictionary1["crns"].length)
+    puts exist
+  end
 
   post '/name' do
-    puts "Entered the POST block"
+    puts "Entered the User POST block"
     body = request.body.read
     puts body
     dictionary = JSON.parse(body)
@@ -42,4 +67,6 @@ configure do
         end
     end
   end
+
+
 

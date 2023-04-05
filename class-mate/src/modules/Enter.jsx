@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import axios from 'axios';
 export var crn = []; // Array to store the CRNs
 function Enter() {
   // Enter classes component
@@ -50,6 +51,19 @@ function Enter() {
             if (crn.length === 0) {
               el.preventDefault();
               alert("Please enter at least one CRN");
+            } else {
+              console.log("Sending request with body:", { crns: crn });
+              axios.post('http://localhost:4567/verify', { crns: crn }, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+              .then(response => {
+                console.log("Received response:", response.data);
+              })
+              .catch(error => {
+                console.log("Received error:", error.response.data);
+              });
             }
           }}
         >
