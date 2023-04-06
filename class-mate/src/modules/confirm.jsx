@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { crn as crnInitial, result, exist } from "./Enter.jsx";
+import { crn as crnInitial} from "./Enter.jsx";
 import { email } from "./Home.jsx";
 import axios from 'axios';
 
@@ -45,21 +45,10 @@ function Confirm() {
     <div className="container text-center mt-5">
       <h1>Confirm if you wish to join these groups:</h1>
       <br />
-      <p>Result:</p>
-      <div>
-      {data ? (
-        <div>
-          <p>Result: {data.result.join(', ')}</p>
-          <p>Exist: {data.exist ? 'Yes' : 'No'}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
 
       <p>Deselect the groups you do not wish to join</p>
       <form>
-        {crnInitial.map((crnNumber) => (
+        {crnInitial.map((crnNumber, index) => (
           <div key={crnNumber} className="form-group">
             <input
               className="form-check-input"
@@ -73,7 +62,7 @@ function Confirm() {
               className="form-check-label"
               htmlFor={`checkbox-${crnNumber}`}
             >
-              {crnNumber}:
+              {crnNumber}: {data ? data.result[index][0] + "- " + data.result[index][1] : 'Loading...'}
             </label>
           </div>
         ))}

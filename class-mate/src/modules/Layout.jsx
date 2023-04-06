@@ -7,3 +7,4 @@ export { default as Order } from "./order";
 export { default as Enter } from "./Enter";
 export { default as Confirm } from "./confirm";
 export { default as Display } from "./display";
+export { default as Redirect } from "./redirect";

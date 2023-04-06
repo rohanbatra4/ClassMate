@@ -13,6 +13,7 @@ import {
   Enter,
   Confirm,
   Display,
+  Redirect,
 } from "./modules/Layout";
 
 ReactDOM.render(
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Route path="/Enter" element={<Enter />} />
       <Route path="/confirm" element={<Confirm />} />
       <Route path="/display" element={<Display />} />
+      <Route path="/redirect" element={<Redirect />} />
     </Routes>
     <Footer />
   </Router>,

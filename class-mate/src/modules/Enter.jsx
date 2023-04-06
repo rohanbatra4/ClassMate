@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import axios from 'axios';
 
 export var crn = []; // Array to store the CRNs
-export var result = [];
-export var exist = false;
 
 
 function Enter() {
@@ -52,7 +50,7 @@ function Enter() {
         <br></br> <br></br>
         <NavLink
           className="connect"
-          to="/confirm"
+          to="/redirect"
           onClick={(el) => {
             if (crn.length === 0) {
               el.preventDefault();

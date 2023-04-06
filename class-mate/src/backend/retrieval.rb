@@ -17,6 +17,7 @@ dictionary1 = {}
 pushEmail = ""
 exist = false
 verification = false
+check = 0
 
 configure do
     enable :cross_origin
@@ -62,6 +63,7 @@ get '/receive' do
           check += 1
           puts db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value]
           result.push(db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value])
+          count = 1
           break
         end
         count += 1
@@ -72,7 +74,7 @@ get '/receive' do
   puts exist
 
   content_type :json
-  { result: result, exist: exist }.to_json
+  { result: result, check: check }.to_json
 end
 
 
