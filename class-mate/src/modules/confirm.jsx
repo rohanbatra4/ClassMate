@@ -1,12 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { crn as crnInitial } from "./Enter.jsx";
+import { useEffect, useState } from 'react';
+import { crn as crnInitial, result, exist } from "./Enter.jsx";
 import { email } from "./Home.jsx";
 import axios from 'axios';
 
 function Confirm() {
   const [crn, setCrn] = useState(crnInitial);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:4567/receive')
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []);
+  
 
   const handleCheckboxChange = (event) => {
     const crnNumber = event.target.value;
@@ -37,6 +45,18 @@ function Confirm() {
     <div className="container text-center mt-5">
       <h1>Confirm if you wish to join these groups:</h1>
       <br />
+      <p>Result:</p>
+      <div>
+      {data ? (
+        <div>
+          <p>Result: {data.result.join(', ')}</p>
+          <p>Exist: {data.exist ? 'Yes' : 'No'}</p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+
       <p>Deselect the groups you do not wish to join</p>
       <form>
         {crnInitial.map((crnNumber) => (
