@@ -49,6 +49,7 @@ get '/receive' do
   while verification == false do
     sleep(1)
   end
+  verification = false
   result = []
   check = 0
   count = 1
@@ -119,6 +120,7 @@ end
   end
 
   post '/emailsend' do
+    result = []
     puts "Entered the emailsend POST block"
     body = request.body.read
     email2 = JSON.parse(body)
@@ -135,14 +137,15 @@ end
     result = []
     count = 1
     check = 0
-    while verification2 == false do
+    while !verification2 do
       sleep(1)
     end
+    verification2 = false
     begin
       email_field_sym = email2["email"].to_sym
+      puts email_field_sym
       puts db.collection(collection).doc("emails").get.data[email_field_sym]
       list = db.collection(collection).doc("emails").get.data[email_field_sym]
-      puts list.length
       for value in list
         if value.nil?
           next
@@ -152,7 +155,6 @@ end
             check += 0
           else
             check += 1
-            puts db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value]
             result.push(db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value])
             count = 1
             break
@@ -163,11 +165,10 @@ end
       if check == list.length
         puts result
         content_type :json
-        return { result: result }.to_json
+        return { result: result, crns: list }.to_json
       else
         puts "Unsuccessful"
       end
-      puts "Success"
     rescue  => exception
       puts "Error"
       puts exception

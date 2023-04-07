@@ -2,9 +2,11 @@ export { default as Header } from "../common/Header";
 export { default as Footer } from "../common/Footer";
 export { default as Home } from "./Home";
 export { default as Info } from "./info";
+export { default as Info2 } from "./info2";
 export { default as Creator } from "./creator";
 export { default as Order } from "./order";
 export { default as Enter } from "./Enter";
 export { default as Confirm } from "./confirm";
 export { default as Display } from "./display";
 export { default as Redirect } from "./redirect";
+

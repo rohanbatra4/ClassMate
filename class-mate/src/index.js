@@ -14,6 +14,7 @@ import {
   Confirm,
   Display,
   Redirect,
+  Info2,
 } from "./modules/Layout";
 
 ReactDOM.render(
@@ -22,6 +23,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/info" element={<Info />} />
+      <Route path="/info2" element={<Info2 />} />
       <Route path="/creator" element={<Creator />} />
       <Route path="/order" element={<Order />} />
       <Route path="/Enter" element={<Enter />} />

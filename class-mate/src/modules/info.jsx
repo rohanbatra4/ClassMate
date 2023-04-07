@@ -68,7 +68,6 @@ function Info() {
                 </button>
               </NavLink>
               <br />  <br />
-      <br />  <br />
     </div>
   );
 }

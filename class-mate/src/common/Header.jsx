@@ -25,8 +25,8 @@ function Header() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/creator">
-                  Leave all current groups
+                <NavLink className="nav-link" to="/info2">
+                  Leave groups
                 </NavLink>
               </li>
             </ul>
