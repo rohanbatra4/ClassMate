@@ -1,7 +1,8 @@
 import React from "react";
-import print from "../assets/images/print.jpg";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 export var emailVerifier = "";
+
 function Info() {
   // Info component
   function handleSubmit(e) {
@@ -49,6 +50,16 @@ function Info() {
                   ) {
                     e.preventDefault();
                     alert("Please enter a valid email id");
+                  } else {
+                    console.log("Sending request with body:", { email: emailVerifier });
+                    axios.post('http://localhost:4567/emailsend', { email: emailVerifier }, {
+                      headers: {
+                        'Content-Type': 'application/json'
+                      }
+                    })
+                    .then(response => {
+                      console.log("Received response:", response.data);
+                    })
                   }
                 }}
               >
@@ -57,9 +68,6 @@ function Info() {
                 </button>
               </NavLink>
               <br />  <br />
-      <button class="btn btn-primary" onClick={() => window.print()}>
-        <img src={print} width="30px" height="30px" alt="print" /> Print
-      </button>
       <br />  <br />
     </div>
   );

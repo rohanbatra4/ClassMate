@@ -21,7 +21,7 @@ function Header() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/info">
-                  Your classes
+                  Your groups
                 </NavLink>
               </li>
               <li className="nav-item">
