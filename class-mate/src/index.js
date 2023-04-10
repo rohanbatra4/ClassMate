@@ -15,6 +15,7 @@ import {
   Display,
   Redirect,
   Info2,
+  Leave,
 } from "./modules/Layout";
 
 ReactDOM.render(
@@ -30,6 +31,7 @@ ReactDOM.render(
       <Route path="/confirm" element={<Confirm />} />
       <Route path="/display" element={<Display />} />
       <Route path="/redirect" element={<Redirect />} />
+      <Route path="/leave" element={<Leave />} />
     </Routes>
     <Footer />
   </Router>,

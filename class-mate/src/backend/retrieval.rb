@@ -49,7 +49,6 @@ get '/receive' do
   while verification == false do
     sleep(1)
   end
-  verification = false
   result = []
   check = 0
   count = 1
@@ -174,5 +173,48 @@ end
       puts exception
     end
   end
+
+  post '/leave' do
+    puts "Entered the User leave POST block"
+    body = request.body.read
+    puts body
+    list = []
+    first = []
+    dictionary = JSON.parse(body)
+    pushEmail = email2["email"]
+    puts pushEmail
+    for key in dictionary.keys
+        email_field_sym = pushEmail.to_sym
+        first = db.collection(collection).doc("emails").get.data[email_field_sym]
+        if first.nil?
+          first = []
+        else
+          first = first - dictionary[key]
+        end
+        first = first.uniq
+        db.collection(collection).doc("emails").set({pushEmail => first}, merge: true)
+        if first.length === 0
+          db.collection(collection).doc("emails").update({ pushEmail => db.field_delete })
+        end
+        first = []
+        for value in dictionary[key]
+          if value.nil?
+            next
+          end
+          value1 = value.to_sym
+          list = db.collection("Groups").doc("GTech").get.data[value1]
+          if list.nil?
+            list = []
+          else
+            list = list - [pushEmail]
+          end
+          db.collection("Groups").doc("GTech").set({value => list}, merge: true)
+          if list.length === 0
+            db.collection("Groups").doc("GTech").update({ value => db.field_delete })
+          end
+          list = []
+        end
+      end
+    end
 
 

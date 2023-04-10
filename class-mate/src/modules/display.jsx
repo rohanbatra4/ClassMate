@@ -1,6 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { emailVerifier } from "./info";
 import { useEffect, useState } from 'react';
 import print from "../assets/images/print.jpg";
 
@@ -25,7 +23,7 @@ function Display() {
           index++;
           return (
             <div>
-              <p> {index}. {item[0]}: {item[1]} </p>
+              <p> {index}. {item[0]}: {item[1]} ({data.crns[index -1]}) </p>
             </div>
           )
         }) : null} </p>

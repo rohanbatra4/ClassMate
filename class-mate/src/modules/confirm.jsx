@@ -70,17 +70,12 @@ function Confirm() {
         <NavLink
           className="done"
           to="/order"
-          onClick={(el) => {
-            if (crn.length === 0) {
-              el.preventDefault();
-              alert("Please select at least one CRN");
-            }
-          }}
         >
           <button
             className="btn btn-primary"
             type="button"
             onClick={handleJoinClick}
+            disabled={crn.length === 0}
           >
             Join
           </button>
