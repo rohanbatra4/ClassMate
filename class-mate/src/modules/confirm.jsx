@@ -10,7 +10,7 @@ function Confirm() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:4567/receive')
+    fetch('http://localhost:4567/receive2')
       .then(response => response.json())
       .then(data => setData(data));
   }, []);

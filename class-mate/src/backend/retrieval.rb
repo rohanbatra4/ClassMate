@@ -53,6 +53,7 @@ get '/receive' do
   check = 0
   count = 1
   exist = true
+  verification = false
   if !dictionary1["crns"].nil?
     for value in dictionary1["crns"]
       if value.nil?
@@ -79,6 +80,37 @@ get '/receive' do
   { result: result, check: check, exist: exist }.to_json
 end
 
+get '/receive2' do
+  puts "Entered the receive2 GET block"
+  result = []
+  check = 0
+  count = 1
+  exist = true
+  if !dictionary1["crns"].nil?
+    for value in dictionary1["crns"]
+      if value.nil?
+        next
+      end
+      while count < 8 do
+        if (db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value] == nil)
+          check += 0
+        else
+          check += 1
+          puts db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value]
+          result.push(db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value])
+          count = 1
+          break
+        end
+        count += 1
+      end
+    end
+  end
+  exist = (check == dictionary1["crns"].length)
+  puts exist
+
+  content_type :json
+  { result: result, check: check, exist: exist }.to_json
+end
 
   post '/name' do
     puts "Entered the User POST block"
