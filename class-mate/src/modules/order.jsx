@@ -11,7 +11,7 @@ function Order() {
       <p>You have been successfully added to all class groups!</p>
       <p>
         You can check out the groups you have been added to in the{" "}
-        <b>Your classes</b> section
+        <b>Your groups</b> section
       </p>
       <div>
         <NavLink className="navbar-brand" to="/">

@@ -15,7 +15,7 @@ collection = "UserClasses"
 dictionary = {}
 dictionary1 = {}
 pushEmail = ""
-exist = false
+exist = true
 verification = false
 check = 0
 email2 = ""
@@ -52,7 +52,7 @@ get '/receive' do
   result = []
   check = 0
   count = 1
-  exist = false
+  exist = true
   if !dictionary1["crns"].nil?
     for value in dictionary1["crns"]
       if value.nil?
@@ -76,7 +76,7 @@ get '/receive' do
   puts exist
 
   content_type :json
-  { result: result, check: check }.to_json
+  { result: result, check: check, exist: exist }.to_json
 end
 
 
@@ -111,6 +111,7 @@ end
           else
             list = list.concat([pushEmail])
           end
+          list = list.uniq
           db.collection("Groups").doc("GTech").set({value => list}, merge: true)
           list = []
         end
@@ -208,6 +209,7 @@ end
           else
             list = list - [pushEmail]
           end
+          list = list.uniq
           db.collection("Groups").doc("GTech").set({value => list}, merge: true)
           if list.length === 0
             db.collection("Groups").doc("GTech").update({ value => db.field_delete })

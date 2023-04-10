@@ -9,11 +9,11 @@ function Creator() {
       <p>You have left the selected groups</p>
       <p>
         You can check out the groups you are a part of in the {" "}
-        <b>Your classes</b> section
+        <b>Your groups</b> section
       </p>
       <div>
         <NavLink className="navbar-brand" to="/">
-          Want to join more groups?
+          Want to join new groups?
         </NavLink>
       </div>
     </div>

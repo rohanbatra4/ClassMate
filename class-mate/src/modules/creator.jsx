@@ -58,7 +58,7 @@ function Creator() {
                 className="form-check-label"
                 htmlFor={`checkbox-${item[0]}`}
               >
-                {item[0]}: {item[1]}
+                {item[0]}: {item[1]} ({data.crns[index]})
               </label>
             </div>
           ))}

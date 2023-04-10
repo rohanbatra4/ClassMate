@@ -11,24 +11,35 @@ var counter = 0;
       .then(response => response.json())
       .then(data => setData(data));
   }, []);
+
+  if (data && !data.exist) {
+    return (
+      <div className="container text-center mt-5">
+        <h2>Invalid CRNs</h2>
+        <p>It seems you entered some CRNs, which do not exist</p>
+        <p>Please enter all valid CRNs</p>
+        <NavLink className="connect" to="/enter">
+        <button className="btn btn-primary" type="button">Enter valid CRNs</button>
+        </NavLink>
+        <br />
+        <br />
+        </div>
+
+    );
+  }
+
   data ? counter = data.check : counter = 0;
   
   return (  
     <div className="container text-center mt-5">
-    {counter === crn.length && <h1>Thank you for entering your CRNs</h1>}
+    {counter === crn.length && data.exist && <h1>Thank you for entering your CRNs</h1>}
     {counter !== crn.length && <h1>Redirecting...</h1>}
     
-    {counter === crn.length ? (
+    {counter === crn.length && data.exist ? (
         <NavLink className="connect" to="/confirm">
         <button className="btn btn-primary" type="button">Confirm</button>
         </NavLink>
-    ) : (
-        <NavLink className="connect" to="/enter">
-        <button className="btn btn-primary" type="button">Enter valid CRNs</button>
-        </NavLink>
-    )}
-    <br />
-    {counter !== crn.length && <p>If the redirecting screen stays for over 10 seconds, please click the button to enter valid CRNs</p>}
+    ) : null}
     <br />
     <br />
     </div>
