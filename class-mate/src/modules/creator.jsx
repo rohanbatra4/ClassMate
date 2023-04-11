@@ -24,42 +24,51 @@ function Creator() {
   const handleLeaveClick = () => {
     console.log("Selected CRNs:", selectedGroups);
     console.log("Sending request with body:", { groups: selectedGroups });
-    axios.post('http://localhost:4567/leave', { groups: selectedGroups }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      console.log("Received response:", response.data);
-    })
-    .catch(error => {
-      console.log("Received error:", error.response.data);
-    });
+    axios
+      .post(
+        "http://localhost:4567/leave",
+        { groups: selectedGroups },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Received response:", response.data);
+      })
+      .catch((error) => {
+        console.log("Received error:", error.response.data);
+      });
   };
 
   if (data && data.error) {
-    console.log('Error: ', data.error);
+    console.log("Error: ", data.error);
     return (
       <div class="container text-center mt-5">
         <h2>You are not registered with us yet</h2>
         <br />
         <div>
-        <NavLink className="navbar-brand" to="/">
-          Want to join new groups?
-        </NavLink>
+          <NavLink className="navbar-brand" to="/">
+            Want to join new groups?
+          </NavLink>
+        </div>
+        <br />
       </div>
-      <br />
-      </div>
-    )
+    );
   }
 
   return (
     <div className="container text-center mt-5">
       {data && data.result ? (
-    data.result && data.result.length !== 0 ? 
-    <h2>Please select the groups you wish to leave:</h2> : 
-    <h2>You are not in any class groups</h2>
-  ) : <h2>Loading...</h2>}
+        data.result && data.result.length !== 0 ? (
+          <h2>Please select the groups you wish to leave:</h2>
+        ) : (
+          <h2>You are not in any class groups</h2>
+        )
+      ) : (
+        <h2>Loading...</h2>
+      )}
       <br></br>
       <form>
         {data &&
@@ -83,14 +92,14 @@ function Creator() {
       </form>
       <br />
       <NavLink to="/leave">
-      <button
-        className="btn btn-primary"
-        type="button"
-        onClick={handleLeaveClick}
-        disabled={selectedGroups.length === 0}
-      >
-        Leave
-      </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleLeaveClick}
+          disabled={selectedGroups.length === 0}
+        >
+          Leave
+        </button>
       </NavLink>
       <br />
       <br />

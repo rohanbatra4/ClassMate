@@ -1,20 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import { crn as crnInitial} from "./Enter.jsx";
+import { useEffect, useState } from "react";
+import { crn as crnInitial } from "./Enter.jsx";
 import { email } from "./Home.jsx";
-import axios from 'axios';
+import axios from "axios";
 
 function Confirm() {
   const [crn, setCrn] = useState(crnInitial);
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:4567/receive2')
-      .then(response => response.json())
-      .then(data => setData(data));
+    fetch("http://localhost:4567/receive2")
+      .then((response) => response.json())
+      .then((data) => setData(data));
   }, []);
-  
 
   const handleCheckboxChange = (event) => {
     const crnNumber = event.target.value;
@@ -28,17 +27,22 @@ function Confirm() {
   const handleJoinClick = () => {
     alert("Selected CRNs: " + crn.join(", "));
     console.log("Sending request with body:", { emailId: email, crns: crn });
-    axios.post('http://localhost:4567/name', { emailId: email, crns: crn }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      console.log("Received response:", response.data);
-    })
-    .catch(error => {
-      console.log("Received error:", error.response.data);
-    });
+    axios
+      .post(
+        "http://localhost:4567/name",
+        { emailId: email, crns: crn },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Received response:", response.data);
+      })
+      .catch((error) => {
+        console.log("Received error:", error.response.data);
+      });
   };
 
   return (
@@ -62,15 +66,15 @@ function Confirm() {
               className="form-check-label"
               htmlFor={`checkbox-${crnNumber}`}
             >
-              {crnNumber}: {data ? data.result[index][0] + "- " + data.result[index][1] : 'Loading...'}
+              {crnNumber}:{" "}
+              {data
+                ? data.result[index][0] + "- " + data.result[index][1]
+                : "Loading..."}
             </label>
           </div>
         ))}
         <br />
-        <NavLink
-          className="done"
-          to="/order"
-        >
+        <NavLink className="done" to="/order">
           <button
             className="btn btn-primary"
             type="button"
