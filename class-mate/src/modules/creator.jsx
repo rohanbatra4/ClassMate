@@ -37,11 +37,29 @@ function Creator() {
     });
   };
 
+  if (data && data.error) {
+    console.log('Error: ', data.error);
+    return (
+      <div class="container text-center mt-5">
+        <h2>You are not registered with us yet</h2>
+        <br />
+        <div>
+        <NavLink className="navbar-brand" to="/">
+          Want to join new groups?
+        </NavLink>
+      </div>
+      <br />
+      </div>
+    )
+  }
+
   return (
     <div className="container text-center mt-5">
-      <h2>Confirm if you wish to leave these groups</h2>
-      <br />
-      {data ? <p>Select the groups you wish to leave</p> : <p>Loading...</p>}
+      {data && data.result ? (
+    data.result && data.result.length !== 0 ? 
+    <h2>Please select the groups you wish to leave:</h2> : 
+    <h2>You are not in any class groups</h2>
+  ) : <h2>Loading...</h2>}
       <br></br>
       <form>
         {data &&

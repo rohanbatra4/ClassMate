@@ -172,38 +172,39 @@ end
     while !verification2 do
       sleep(1)
     end
-    verification2 = false
-    begin
-      email_field_sym = email2["email"].to_sym
-      puts email_field_sym
-      puts db.collection(collection).doc("emails").get.data[email_field_sym]
-      list = db.collection(collection).doc("emails").get.data[email_field_sym]
-      for value in list
-        if value.nil?
-          next
-        end
-        while count < 8 do
-          if (db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value] == nil)
-            check += 0
-          else
-            check += 1
-            result.push(db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value])
-            count = 1
-            break
-          end
-          count += 1
-        end
+    verification2 = false 
+    email_field_sym = email2["email"].to_sym
+    puts email_field_sym
+    puts db.collection(collection).doc("emails").get.data[email_field_sym]
+    list = db.collection(collection).doc("emails").get.data[email_field_sym]
+    if list.nil?
+      error = true
+      content_type :json
+      return { result: result, crns: list, error: error }.to_json
+    end
+    for value in list
+      if value.nil?
+        next
       end
-      if check == list.length
-        puts result
-        content_type :json
-        return { result: result, crns: list }.to_json
-      else
-        puts "Unsuccessful"
+      while count < 8 do
+        if (db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value] == nil)
+          check += 0
+        else
+          check += 1
+          result.push(db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value])
+          count = 1
+          break
+        end
+        count += 1
       end
-    rescue  => exception
-      puts "Error"
-      puts exception
+    end
+    if check == list.length
+      puts result
+      error = false
+      content_type :json
+      return { result: result, crns: list, error: error }.to_json
+    else
+      puts "Unsuccessful"
     end
   end
 
