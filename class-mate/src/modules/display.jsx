@@ -17,7 +17,7 @@ function Display() {
   if (data && data.error) {
     console.log("Error: ", data.error);
     return (
-      <div class="container text-center mt-5">
+      <div className="container text-center mt-5">
         <h2>You are not registered with us yet</h2>
         <br />
         <div>
@@ -31,7 +31,7 @@ function Display() {
   }
 
   return (
-    <div class="container text-center mt-5">
+    <div className="container text-center mt-5">
       {data && data.result ? (
         data.result && data.result.length !== 0 ? (
           <h2>You are in {counter} class groups:</h2>
@@ -58,7 +58,7 @@ function Display() {
             })
           : null}{" "}
       </p>
-      <button class="btn btn-primary" onClick={() => window.print()}>
+      <button className="btn btn-primary" onClick={() => window.print()}>
         <img src={print} width="30px" height="30px" alt="print" /> Print
       </button>
       <br />

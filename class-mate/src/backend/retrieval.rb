@@ -3,7 +3,6 @@ require "sinatra/cross_origin"
 require "json"
 require "google/cloud/firestore"
 
-# Initialize Firestore client
 project_id = "classmate-2bc70"
 credential_file = "/Users/rohanbatra/Desktop/CS4365/classmate-2bc70-firebase-adminsdk-v075n-fad07d3573.json"
 db = Google::Cloud::Firestore.new(
@@ -11,7 +10,6 @@ db = Google::Cloud::Firestore.new(
   credentials: credential_file,
 )
 collection = "UserClasses"
-# set blank dictionary
 dictionary = {}
 dictionary1 = {}
 pushEmail = ""
@@ -159,10 +157,6 @@ post "/emailsend" do
   puts email2
   verification2 = true
 end
-
-# use this email2 value to check if in the UserClasses collection, this email exists
-# if it does, then return all the fields in the dictionary
-# if it does not, then send an error message to the frontend
 
 get "/email" do
   puts "Entered the email GET block"

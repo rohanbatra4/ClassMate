@@ -22,7 +22,7 @@ describe("Order component", () => {
 
   it("renders the 'Your classes' text in bold", () => {
     render(<Order />, { wrapper: MemoryRouter });
-    const boldText = screen.getByText("Your classes");
+    const boldText = screen.getByText("Your groups");
     expect(boldText.tagName).toBe("B");
   });
 
