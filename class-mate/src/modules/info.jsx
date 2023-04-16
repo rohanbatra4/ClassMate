@@ -59,6 +59,7 @@ function Info() {
               )
               .then((response) => {
                 console.log("Received response:", response.data);
+                emailVerifier = "";
               });
           }
         }}
