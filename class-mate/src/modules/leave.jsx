@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-function Creator() {
+
+// This component is rendered when the user has successfully left all the groups
+function Leave() {
   return (
     <div className="container text-center mt-5">
       <h2>Sad to see you leave :&#40;</h2>
@@ -18,4 +20,4 @@ function Creator() {
   );
 }
 
-export default Creator;
+export default Leave;

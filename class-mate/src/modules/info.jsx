@@ -3,17 +3,14 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 export var emailVerifier = "";
 
+// This component is rendered to get the email of the user to then display the groups they are a part of
 function Info() {
-  // Info component
   function handleSubmit(e) {
     e.preventDefault();
   }
 
   return (
-    // Didnt add checklist here yet as the 'crn' array cannot be used here.
-    // that has to be uploaded on Firebase and then those are the user's final classes which can then be pulled to put here.
-    // Return the info component
-    <div class="container text-center mt-5">
+    <div className="container text-center mt-5">
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>

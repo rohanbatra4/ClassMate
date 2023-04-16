@@ -2,15 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-export var crn = []; // Array to store the CRNs
+export var crn = [];
 
+// This component is rendered for the user to enter their CRNs, which are then sent to the backend for validation
 function Enter() {
-  // Enter classes component
   var count = 1;
-  // add another input blank
   crn = [];
   return (
-    // Return the enter CRNs component
     <div className="container text-center mt-5">
       <h1>Enter your Class Registration Numbers (CRNs):</h1>
       <br></br>

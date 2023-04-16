@@ -1,11 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Order() {
-  // Order component
-
+// This component is rendered when the user has successfully joined all the groups
+function Complete() {
   return (
-    // Return the order component
     <div className="container text-center mt-5">
       <h2>Congratulations!</h2>
       <p>You have been successfully added to all class groups!</p>
@@ -21,4 +19,4 @@ function Order() {
     </div>
   );
 }
-export default Order;
+export default Complete;

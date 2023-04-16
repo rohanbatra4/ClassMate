@@ -7,9 +7,10 @@ import { Country, State } from "country-state-city";
 import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
 export var email = "";
-function Home() {
-  // Home component
 
+// This component is rendered when the user is on the home page. They can enter their details here and join the groups
+// The only college available is Georgia Tech as that is the only one we are focussing on for this semester.
+function Home() {
   const addressFromik = useFormik({
     initialValues: {
       country: null,
@@ -17,26 +18,26 @@ function Home() {
       college: null,
     },
     onSubmit: (values) => console.log(JSON.stringify(values)),
-  }); // Formik for the address form
+  });
 
-  const countries = Country.getAllCountries(); // Get all countries
+  const countries = Country.getAllCountries();
 
   const updatedCountries = countries.map((country) => ({
     label: country.name,
     value: country.id,
     ...country,
-  })); // Update the countries to be used in the select component
+  }));
 
   const updatedStates = (countryId) =>
     State.getStatesOfCountry(countryId).map((state) => ({
       label: state.name,
       value: state.id,
       ...state,
-    })); // Get all states of a country
+    }));
 
-  var { values, handleSubmit, setFieldValue, setValues } = addressFromik; // Get the values from the formik
-  const college = [{ label: "Georgia Tech", value: "Georgia Tech" }]; // College options (Currently only Georgia Tech)
-  useEffect(() => {}, [values]); // Use effect to update the values when they change
+  var { values, handleSubmit, setFieldValue, setValues } = addressFromik;
+  const college = [{ label: "Georgia Tech", value: "Georgia Tech" }];
+  useEffect(() => {}, [values]);
 
   return (
     <div className="home">

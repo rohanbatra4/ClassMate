@@ -33,12 +33,12 @@ function Redirect() {
 
   return (
     <div className="container text-center mt-5">
-      {counter === crn.length && data.exist && (
+      {counter === crn.length && data && data.exist && (
         <h1>Thank you for entering your CRNs</h1>
       )}
       {counter !== crn.length && <h1>Redirecting...</h1>}
 
-      {counter === crn.length && data.exist ? (
+      {counter === crn.length && data && data.exist ? (
         <NavLink className="connect" to="/confirm">
           <button className="btn btn-primary" type="button">
             Confirm

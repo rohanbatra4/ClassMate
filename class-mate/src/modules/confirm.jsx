@@ -5,6 +5,7 @@ import { crn as crnInitial } from "./Enter.jsx";
 import { email } from "./Home.jsx";
 import axios from "axios";
 
+// This component is rendered when the user has entered all the CRNs and is ready to join the groups (validity of CRNs is checked in the backend and checklist is provided to the user to confirm their choice)
 function Confirm() {
   const [crn, setCrn] = useState(crnInitial);
   const [data, setData] = useState(null);
@@ -74,7 +75,7 @@ function Confirm() {
           </div>
         ))}
         <br />
-        <NavLink className="done" to="/order">
+        <NavLink className="done" to="/complete">
           <button
             className="btn btn-primary"
             type="button"

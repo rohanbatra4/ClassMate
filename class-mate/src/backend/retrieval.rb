@@ -9,31 +9,35 @@ db = Google::Cloud::Firestore.new(
   project_id: project_id,
   credentials: credential_file,
 )
-collection = "UserClasses"
-dictionary = {}
-dictionary1 = {}
-pushEmail = ""
-exist = true
-verification = false
-check = 0
-email2 = ""
-verification2 = false
+collection = "UserClasses" # Name of the user tracking collection in the database
+dictionary = {} # Dictionary to that receives the user's classes
+dictionary1 = {} # Dictionary that receives the user's CRNs
+pushEmail = "" # Email of the user
+exist = true # Boolean that checks if the CRNs exist in the database
+verification = false # Boolean that ensure POST request is received before GET request
+check = 0 # Number of CRNs that exist in the database
+email2 = "" # Email of the user
+verification2 = false # Boolean that ensure POST request is received before GET request
 
+# Enable cross-origin resource sharing
 configure do
   enable :cross_origin
   dictionary1 = {}
 end
 
+# Set up CORS
 before do
   response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
   response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "Content-Type"
 end
 
+# Handle preflight OPTIONS request
 options "*" do
   200
 end
 
+# Handle POST request to receive the user's classes
 post "/verify" do
   puts "Entered the Verify POST block"
   body = request.body.read
@@ -42,6 +46,7 @@ post "/verify" do
   verification = true
 end
 
+# Handle GET request to receive the user's classes and send the names of the classes
 get "/receive" do
   puts "Entered the receive GET block"
   while verification == false
@@ -78,6 +83,7 @@ get "/receive" do
   { result: result, check: check, exist: exist }.to_json
 end
 
+# Handle GET request to receive the user's classes and send the names of the classes but without verification
 get "/receive2" do
   puts "Entered the receive2 GET block"
   result = []
@@ -110,6 +116,7 @@ get "/receive2" do
   { result: result, check: check, exist: exist }.to_json
 end
 
+# Handle POST request to receive the user's classes and store them in the database
 post "/name" do
   puts "Entered the User POST block"
   body = request.body.read
@@ -149,6 +156,7 @@ post "/name" do
   end
 end
 
+# Handle POST request to receive the user's email
 post "/emailsend" do
   result = []
   puts "Entered the emailsend POST block"
@@ -158,6 +166,7 @@ post "/emailsend" do
   verification2 = true
 end
 
+# Handle GET request to receive the user's email and send the CRNs of the classes after verification
 get "/email" do
   puts "Entered the email GET block"
   result = []
@@ -202,6 +211,7 @@ get "/email" do
   end
 end
 
+# Handle POST request to receive the user's classes and remove them from the database
 post "/leave" do
   puts "Entered the User leave POST block"
   body = request.body.read

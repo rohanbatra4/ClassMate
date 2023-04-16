@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import print from "../assets/images/print.jpg";
 import { NavLink } from "react-router-dom";
 
+// This component is rendered to display the groups the user is a part of
 function Display() {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -12,7 +13,6 @@ function Display() {
   }, []);
   var counter = 0;
   data ? (counter = data.result.length) : (counter = 0);
-  // set an index to list all classes from data.result
   var index = 0;
   if (data && data.error) {
     console.log("Error: ", data.error);

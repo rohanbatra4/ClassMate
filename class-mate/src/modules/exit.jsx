@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-function Creator() {
+// This component is rendered to allow the user to leave the groups they are a part of
+function Exit() {
   const [data, setData] = useState(null);
   const [selectedGroups, setSelectedGroups] = useState([]);
 
@@ -45,7 +46,7 @@ function Creator() {
   if (data && data.error) {
     console.log("Error: ", data.error);
     return (
-      <div class="container text-center mt-5">
+      <div className="container text-center mt-5">
         <h2>You are not registered with us yet</h2>
         <br />
         <div>
@@ -107,4 +108,4 @@ function Creator() {
   );
 }
 
-export default Creator;
+export default Exit;
