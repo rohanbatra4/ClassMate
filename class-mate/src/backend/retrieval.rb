@@ -172,6 +172,7 @@ get "/email" do
   result = []
   count = 1
   check = 0
+  target = 0
   while !verification2
     sleep(1)
   end
@@ -189,6 +190,7 @@ get "/email" do
     if value.nil?
       next
     end
+    target += 1
     while count < 8
       if (db.collection("CollegeCourseList").doc("GT" + count.to_s).get[value] == nil)
         check += 0
@@ -200,7 +202,12 @@ get "/email" do
       end
       count += 1
     end
+    if target != check
+      result.push(["Not found", "Group not from this semester"])
+      check += 1
+    end
   end
+  puts check
   if check == list.length
     puts result
     error = false
