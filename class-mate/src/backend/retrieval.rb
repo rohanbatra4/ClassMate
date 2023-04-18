@@ -203,7 +203,7 @@ get "/email" do
       count += 1
     end
     if target != check
-      result.push(["Not found", "Group not from this semester"])
+      result.push(["Old Group", "Class not from current semester"])
       check += 1
       count = 1
     end
