@@ -205,6 +205,7 @@ get "/email" do
     if target != check
       result.push(["Not found", "Group not from this semester"])
       check += 1
+      count = 1
     end
   end
   puts check
